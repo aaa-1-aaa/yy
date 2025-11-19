@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="theme-color" content="#ffe0f1" />
+    <meta
+      name="description"
+      content="为罗芝琳定制的 20 岁生日 H5，烟花蛋糕惊喜与连环祝福。"
+    />
+    <title>罗芝琳 20 岁生日快乐</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <main class="scene">
+      <section class="sky">
+        <canvas id="fireworksCanvas" aria-label="烟花动画" role="img"></canvas>
+        <p class="floating-text">罗芝琳 · 20</p>
+      </section>
+      <section class="cake-stage" aria-live="polite">
+        <div class="cake" aria-hidden="true">
+          <div class="cake__layer cake__layer--bottom"></div>
+          <div class="cake__layer cake__layer--middle"></div>
+          <div class="cake__layer cake__layer--top"></div>
+          <div class="cake__icing"></div>
+          <div class="cake__candles">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="prompt hidden" id="acceptPrompt">
+          <p class="prompt__title">准备好接受祝福了吗？</p>
+          <div class="prompt__actions">
+            <button data-choice="accept">A 接受</button>
+            <button data-choice="also">B 选 A</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>
+

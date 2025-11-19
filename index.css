@@ -1,0 +1,311 @@
+:root {
+  font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #2f1f38;
+  --pink: #ff9ac9;
+  --rose: #f77ab3;
+  --lavender: #c3a7ff;
+  --cream: #fff4f7;
+  --shadow: rgba(255, 138, 170, 0.25);
+  --bg: linear-gradient(180deg, #fff5fb 0%, #ffe0f1 45%, #fff5fb 100%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: #2f1f38;
+  overflow: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 120vw;
+  height: 120vw;
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::before {
+  top: -60vw;
+  right: -20vw;
+  background: radial-gradient(circle, rgba(255, 195, 222, 0.45), transparent 70%);
+  animation: glow 12s ease-in-out infinite;
+}
+
+body::after {
+  bottom: -70vw;
+  left: -20vw;
+  background: radial-gradient(circle, rgba(195, 167, 255, 0.35), transparent 70%);
+  animation: glow 14s ease-in-out infinite reverse;
+}
+
+.scene {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.sky {
+  flex: 1;
+  min-height: 45vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem 1rem;
+  overflow: hidden;
+}
+
+.sky::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.35), transparent 45%);
+  pointer-events: none;
+}
+
+#fireworksCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.floating-text {
+  position: relative;
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 8px 20px rgba(68, 47, 71, 0.35);
+  animation: float 6s ease-in-out infinite;
+}
+
+.cake-stage {
+  padding: 1.5rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cake {
+  position: relative;
+  width: min(320px, 76vw);
+  height: 260px;
+}
+
+.cake::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 10%;
+  width: 80%;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.08);
+  filter: blur(8px);
+  border-radius: 50%;
+}
+
+.cake__layer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 40px 40px 20px 20px;
+  background: linear-gradient(180deg, var(--cream), #ffe0ed);
+  border: 3px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 12px 30px var(--shadow);
+}
+
+.cake__layer--bottom {
+  bottom: 30px;
+  width: 100%;
+  height: 110px;
+}
+
+.cake__layer--middle {
+  bottom: 90px;
+  width: 75%;
+  height: 90px;
+}
+
+.cake__layer--top {
+  bottom: 150px;
+  width: 55%;
+  height: 70px;
+}
+
+.cake__icing {
+  position: absolute;
+  width: 72%;
+  height: 30px;
+  bottom: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #fff, #ffe7f2);
+  border-radius: 50px;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.7);
+}
+
+.cake__candles {
+  position: absolute;
+  bottom: 210px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 18px;
+}
+
+.cake__candles span {
+  width: 12px;
+  height: 40px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fdd6f0, #ff94c2);
+  position: relative;
+}
+
+.cake__candles span::after {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 20px;
+  background: radial-gradient(circle at 50% 30%, #ffe9a8, rgba(255, 255, 255, 0));
+  filter: blur(1px);
+  border-radius: 50%;
+  animation: flicker 2.1s ease-in-out infinite;
+}
+
+.prompt {
+  width: min(360px, 90vw);
+  padding: 1.5rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  box-shadow: 0 18px 50px rgba(255, 138, 170, 0.35);
+  animation: float 5s ease-in-out infinite;
+}
+
+.prompt__title {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  color: #c04e8b;
+}
+
+.prompt__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.prompt__actions button {
+  flex: 1;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--rose), #ffbfd8);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 12px 20px rgba(255, 143, 177, 0.4);
+}
+
+.prompt__actions button:active {
+  transform: translateY(2px);
+}
+
+.prompt.show {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  animation: fadeInUp 0.9s ease forwards, float 5s ease-in-out infinite 0.9s;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.prompt__actions button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 3px;
+}
+
+@media (max-width: 360px) {
+  .prompt {
+    padding: 1.2rem;
+  }
+
+  .cake {
+    height: 220px;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  30% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
